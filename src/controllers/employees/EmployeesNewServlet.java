@@ -35,7 +35,7 @@ public class EmployeesNewServlet extends HttpServlet {
         // おまじないとしてのインスタンスを生成
         request.setAttribute("employee", new Employee());
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employee/new.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/new.jsp");
         rd.forward(request, response);
      }
 }
