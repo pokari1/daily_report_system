@@ -34,7 +34,7 @@ public class EmployeesEditServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         // 該当のIDのメッセージ1件のみをデータベースから取得
-        Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("code")));
+        Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 
@@ -46,7 +46,7 @@ public class EmployeesEditServlet extends HttpServlet {
         if(e != null) {
             request.getSession().setAttribute("employee_id", e.getId());
         }
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employee/edit.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
         rd.forward(request, response);
     }
 }
