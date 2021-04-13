@@ -1,6 +1,7 @@
 package controllers.employees;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -36,19 +37,19 @@ public class EmployeesDestroyServlet extends HttpServlet {
 
             // セッションスコープからメッセージのIDを取得して
             // 該当のIDのメッセージ1件のみをデータベースから取得
+
+
             Employee e = em.find(Employee.class, (Integer)(request.getSession().getAttribute("employee_id")));
+            e.setDelete_flag(1);
+            e.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
             em.getTransaction().begin();
-            em.remove(e);       // データ削除
             em.getTransaction().commit();
-            request.getSession().setAttribute("flush", "削除が完了しました。");       // ここを追記
             em.close();
+            request.getSession().setAttribute("flush", "削除が完了しました。");
 
-            // セッションスコープ上の不要になったデータを削除
-            request.getSession().removeAttribute("employee_id");
-
-            // indexページへリダイレクト
-            response.sendRedirect(request.getContextPath() + "/index");
+            response.sendRedirect(request.getContextPath() + "/employees/index");
         }
     }
+
 }
