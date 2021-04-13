@@ -34,7 +34,7 @@ public class EmployeesShowServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         // 該当のIDのメッセージ1件のみをデータベースから取得
-        Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("code")));
+        Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 
