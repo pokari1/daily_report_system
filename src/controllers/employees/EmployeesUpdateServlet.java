@@ -2,6 +2,7 @@ package controllers.employees;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -17,7 +18,7 @@ import utils.DBUtil;
 import utils.EncryptUtil;
 
 /**
- * Servlet implementation class UpdateServlet
+ * Servlet implementation class EmployeesUpdateServlet
  */
 @WebServlet("/employees/update")
 public class EmployeesUpdateServlet extends HttpServlet {
@@ -38,10 +39,10 @@ public class EmployeesUpdateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            // セッションスコープからメッセージのIDを取得して
-            // 該当のIDのメッセージ1件のみをデータベースから取得
             Employee e = em.find(Employee.class, (Integer)(request.getSession().getAttribute("employee_id")));
 
+            // 現在の値と異なる社員番号が入力されていたら
+            // 重複チェックを行う指定をする
             Boolean codeDuplicateCheckFlag = true;
             if(e.getCode().equals(request.getParameter("code"))) {
                 codeDuplicateCheckFlag = false;
