@@ -3,7 +3,7 @@ package utils;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
+//Hibernateに接続するための「おまじない」？？
 public class DBUtil {
     private static final String PERSISTENCE_UNIT_NAME = "daily_report_system";
     private static EntityManagerFactory emf;

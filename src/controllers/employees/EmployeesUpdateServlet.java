@@ -35,11 +35,16 @@ public class EmployeesUpdateServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //CSRF対策
         String _token = request.getParameter("_token");
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
+            // セッションスコープからメッセージのIDを取得して
+            // 該当のIDのメッセージ1件のみをデータベースから取得
             Employee e = em.find(Employee.class, (Integer)(request.getSession().getAttribute("employee_id")));
+
 
             // 現在の値と異なる社員番号が入力されていたら
             // 重複チェックを行う指定をする
@@ -65,29 +70,39 @@ public class EmployeesUpdateServlet extends HttpServlet {
                         );
             }
 
+
+
             e.setName(request.getParameter("name"));
             e.setAdmin_flag(Integer.parseInt(request.getParameter("admin_flag")));
             e.setUpdated_at(new Timestamp(System.currentTimeMillis()));
             e.setDelete_flag(0);
 
+
+            // バリデーションを実行してエラーがあったら編集画面のフォームに戻る
             List<String> errors = EmployeeValidator.validate(e, codeDuplicateCheckFlag, passwordCheckFlag);
             if(errors.size() > 0) {
                 em.close();
 
+                // フォームに初期値を設定、さらにエラーメッセージを送る
                 request.setAttribute("_token", request.getSession().getId());
                 request.setAttribute("employee", e);
                 request.setAttribute("errors", errors);
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
                 rd.forward(request, response);
+
             } else {
+             // データベースを更新
                 em.getTransaction().begin();
                 em.getTransaction().commit();
                 em.close();
+
+             // セッションスコープ上の不要になったデータを削除
                 request.getSession().setAttribute("flush", "更新が完了しました。");
 
                 request.getSession().removeAttribute("employee_id");
 
+             // indexページへリダイレクト
                 response.sendRedirect(request.getContextPath() + "/employees/index");
             }
         }

@@ -2,11 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
+
+        <%--フラッシュメッセージ --%>
         <c:if test="${flush != null}">
             <div id="flush_success">
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
+
+
         <h2>従業員　一覧</h2>
         <table id="employee_list">
             <tbody>
@@ -16,6 +20,7 @@
                     <th>操作</th>
                 </tr>
                 <c:forEach var="employee" items="${employees}" varStatus="status">
+                <%--クラス属性＝row0か1　--%>
                     <tr class="row${status.count % 2}">
                         <td><c:out value="${employee.code}" /></td>
                         <td><c:out value="${employee.name}" /></td>
@@ -34,20 +39,25 @@
             </tbody>
         </table>
 
+        <%--件数表示 --%>
         <div id="pagination">
             （全 ${employees_count} 件）<br />
+            <%--繰り返し　 --%>
             <c:forEach var="i" begin="1" end="${((employees_count - 1) / 15) + 1}" step="1">
                 <c:choose>
+                    <%--変数i ＝page　であればiを表示　 &nbsp空白--%>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
                     </c:when>
+                    <%--そうでない場合、iを表示しリンク　 --%>
                     <c:otherwise>
                         <a href="<c:url value='/employees/index?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
-        </div>
-        <p><a href="<c:url value='/employees/new' />">新規従業員の登録</a></p>
+         </div>
+
+          <p><a href="<c:url value='/employees/new' />">新規従業員の登録</a></p>
 
     </c:param>
 </c:import>

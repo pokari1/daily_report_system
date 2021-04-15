@@ -16,6 +16,8 @@ import javax.servlet.annotation.WebListener;
  * Application Lifecycle Listener implementation class PropertiesListener
  *
  */
+//^パスワードのペッパー文字列をリスナーを使って登録
+
 @WebListener
 public class PropertiesListener implements ServletContextListener {
 
