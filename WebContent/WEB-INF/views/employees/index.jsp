@@ -45,11 +45,9 @@
             <%--繰り返し　 --%>
             <c:forEach var="i" begin="1" end="${((employees_count - 1) / 15) + 1}" step="1">
                 <c:choose>
-                    <%--変数i ＝page　であればiを表示　 &nbsp空白--%>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
                     </c:when>
-                    <%--そうでない場合、iを表示しリンク　 --%>
                     <c:otherwise>
                         <a href="<c:url value='/employees/index?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
                     </c:otherwise>

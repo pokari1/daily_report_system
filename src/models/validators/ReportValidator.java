@@ -5,6 +5,7 @@ import java.util.List;
 
 import models.Report;
 
+//バリデーション（入力チェック）実行する
 public class ReportValidator {
     public static List<String> validate(Report r) {
         List<String> errors = new ArrayList<String>();
@@ -21,6 +22,7 @@ public class ReportValidator {
 
         return errors;
     }
+
 
     private static String _validateTitle(String title) {
         if(title == null || title.equals("")) {
