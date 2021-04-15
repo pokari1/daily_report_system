@@ -41,7 +41,7 @@ public class ReportsCreateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            
+
             Report r = new Report();
 
             r.setEmployee((Employee)request.getSession().getAttribute("login_employee"));
@@ -55,6 +55,8 @@ public class ReportsCreateServlet extends HttpServlet {
 
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
+            r.setStime(request.getParameter("stime"));
+            r.setEtime(request.getParameter("etime"));
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             r.setCreated_at(currentTime);

@@ -69,6 +69,33 @@ public class Report{
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
+    @Column(name = "start_time", nullable = true)
+    private String stime;
+
+    @Column(name = "end_time", nullable = true)
+    private String etime;
+
+
+
+
+
+
+
+    public String getStime() {
+        return stime;
+    }
+
+    public void setStime(String stime) {
+        this.stime = stime;
+    }
+
+    public String getEtime() {
+        return etime;
+    }
+
+    public void setEtime(String etime) {
+        this.etime = etime;
+    }
 
     // getter/setter
     public Integer getId() {
