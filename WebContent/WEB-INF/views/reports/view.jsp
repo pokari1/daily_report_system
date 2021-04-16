@@ -23,6 +23,18 @@
                                 <pre><c:out value="${report.content}" /></pre>
                             </td>
                         </tr>
+                                                <tr>
+                            <th>顧客</th>
+                            <td>
+                                <pre><c:out value="${report.cliant}" /></pre>
+                            </td>
+                        </tr>
+                                                <tr>
+                            <th>商談状況</th>
+                            <td>
+                                <pre><c:out value="${report.opportunity}" /></pre>
+                            </td>
+                        </tr>
                         <tr>
                             <th>出勤時間</th>
                             <td>

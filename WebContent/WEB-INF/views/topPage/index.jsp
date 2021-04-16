@@ -18,8 +18,8 @@
                     <th class="report_name">氏名</th>
                     <th class="report_date">日付</th>
                     <th class="report_title">タイトル</th>
-                    <th class="report_start_time">出勤時間</th>
-                    <th class="report_end_time">退勤時間</th>
+                    <th class="report_stime">出勤時間</th>
+                    <th class="report_etime">退勤時間</th>
                     <th class="report_action">操作</th>
                 </tr>
                 <%--繰り返し　 --%>
@@ -29,8 +29,8 @@
                         <td class="report_name"><c:out value="${report.employee.name}" /></td>
                         <td class="report_date"><fmt:formatDate value='${report.report_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
-                        <td class="report_start_time">${report.start_time}</td>
-                        <td class="report_end_time">${report._end_time}</td>
+                        <td class="report_stime">${report.stime}</td>
+                        <td class="report_etime">${report.etime}</td>
                         <td class="report_action"><a href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
                     </tr>
                 </c:forEach>

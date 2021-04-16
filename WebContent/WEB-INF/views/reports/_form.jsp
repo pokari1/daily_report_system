@@ -14,10 +14,6 @@
 <input type="date" name="report_date" value="<fmt:formatDate value='${report.report_date}' pattern='yyyy-MM-dd' />" />
 <br /><br />
 
-<label for="name">氏名</label><br />
-<c:out value="${sessionScope.login_employee.name}" />
-<br /><br />
-
 <label for="title">タイトル</label><br />
 <input type="text" name="title" value="${report.title}" />
 <br /><br />
@@ -26,12 +22,21 @@
 <textarea name="content" rows="10" cols="50">${report.content}</textarea>
 <br /><br />
 
+<label for="cliant">顧客</label><br />
+<input type="text" name="cliant" value="${report.cliant}" />
+<br /><br />
+
+<label for="opportunity">商談状況</label><br />
+<textarea name="opportunity" rows="10" cols="50">${report.opportunity}</textarea>
+<br /><br />
+
+
 <label for="stime">出勤時間</label><br />
-<input type="text" name="title" value="${report.stime}" />
+<input type="text" name="stime" value="${report.stime}" />
 <br /><br />
 
 <label for="etime">退勤時間</label><br />
-<input type="text" name="title" value="${report.etime}" />
+<input type="text" name="etime" value="${report.etime}" />
 <br /><br />
 
 <input type="hidden" name="_token" value="${_token}" />

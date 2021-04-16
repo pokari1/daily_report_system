@@ -69,17 +69,39 @@ public class Report{
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
-    @Column(name = "start_time", nullable = true)
+    @Column(name = "stime", nullable = true)
     private String stime;
 
-    @Column(name = "end_time", nullable = true)
+    @Column(name = "etime", nullable = true)
     private String etime;
 
 
+    @Column(name = "cliant", nullable = false)
+    private String cliant;
+
+
+    @Lob
+    @Column(name = "opportunity")
+    private String opportunity;
+
+
+    public String getCliant() {
+        return cliant;
+    }
+
+    public void setCliant(String cliant) {
+        this.cliant = cliant;
+    }
 
 
 
+    public String getOpportunity() {
+        return opportunity;
+    }
 
+    public void setOpportunity(String opportunity) {
+        this.opportunity = opportunity;
+    }
 
     public String getStime() {
         return stime;

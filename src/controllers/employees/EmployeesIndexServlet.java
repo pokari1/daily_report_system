@@ -42,7 +42,7 @@ public class EmployeesIndexServlet extends HttpServlet {
         } catch(NumberFormatException e) { }
 
 
-        //最大件数と開始位置を指定してをgetAllEmployees取得
+        //最大件数と開始位置を指定してをgetAllCustomer取得
 
         List<Employee> employees = em.createNamedQuery("getAllEmployees", Employee.class)
                 //何件目からデータを取得するか
@@ -52,7 +52,7 @@ public class EmployeesIndexServlet extends HttpServlet {
                  //複数のデータが結果として取得
                  .getResultList();
 
-        //etEmployeesCountを実行しオブジェクトとしてリストへ格納
+        //getCustomersCountを実行しオブジェクトとしてリストへ格納
         long employees_count = (long)em.createNamedQuery("getEmployeesCount", Long.class)
                 //1件だけ取得
                .getSingleResult();
