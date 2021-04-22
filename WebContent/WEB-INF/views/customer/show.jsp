@@ -5,7 +5,7 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${customer != null}">
-                <h2>id : ${customer.id} の従業員情報　詳細ページ</h2>
+                <h2>id : ${customer.id} の顧客情報　詳細ページ</h2>
 
                 <table>
                     <tbody>
@@ -36,7 +36,7 @@
                     </tbody>
                 </table>
 
-                <p><a href="<c:url value='/customer/edit?id=${customer.id}' />">この従業員情報を編集する</a></p>
+                <p><a href="<c:url value='/customer/edit?id=${customer.id}' />">この顧客情報を編集する</a></p>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
